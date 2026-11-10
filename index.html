@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>SideScoop Support</title>
+<style>
+  :root {
+    --bg: #fbfaf7; --fg: #24221f; --muted: #6b665e; --line: #e4e0d8; --accent: #2f6f9f; --box: #f1eee7; --key: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1c1b19; --fg: #ecebe7; --muted: #a9a49b; --line: #3a3833; --accent: #8cc0e6; --box: #26251f; --key: #2e2c27; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.25rem; margin: 2.4em 0 0.5em; padding-top: 0.2em; }
+  h3 { font-size: 1.02rem; margin: 1.6em 0 0.3em; }
+  p, ul, ol { margin: 0 0 1em; }
+  ul, ol { padding-left: 1.3em; }
+  li { margin: 0.3em 0; }
+  a { color: var(--accent); }
+  .lede { color: var(--muted); margin-bottom: 1.6em; }
+  .contact { background: var(--box); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+  .contact p:last-child { margin-bottom: 0; }
+  kbd {
+    font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap;
+    background: var(--key); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px;
+  }
+  code { font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 1em; font-size: 0.95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; color: var(--muted); }
+  td:first-child { white-space: nowrap; padding-right: 14px; }
+  td { overflow-wrap: anywhere; }
+  .tag { font-size: 0.78em; font-weight: 600; letter-spacing: 0.03em; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; margin-left: 4px; white-space: nowrap; }
+  footer { margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+<h1>SideScoop Support</h1>
+<p class="lede">SideScoop is a sidebar of notes, lists and small tools that slides in from the right edge of your Mac's screen.</p>
+
+<div class="contact">
+<p><strong>Need help?</strong> Email <a href="mailto:rabbitoken22@gmail.com">rabbitoken22@gmail.com</a>. Tell me your macOS version, the SideScoop version (menu bar icon › <strong>About SideScoop</strong>) and what happened. I read every message.</p>
+</div>
+
+<h2 id="faq">Common questions</h2>
+
+<h3>I installed SideScoop. Where is it?</h3>
+<p>In the menu bar, near the clock: a small window shape with a strip down its right side. It has no Dock icon. Click it and choose <strong>Show Panel</strong>, or press <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>E</kbd>. Opening SideScoop again from Applications also shows the panel, which helps if the icon is hidden behind the camera notch.</p>
+
+<h3>What's free, and what does Pro add?</h3>
+<p>Notes, Stickies, To-dos, Clips (the last 5 things you copied), Logs, the focus timer, to-do reminders and two themes are free for good. SideScoop Pro adds Tables, Snippets, a longer Clips history, Commits, Maps, Doodles, Trips, extra tabs of a kind and two more themes. The full list is under <a href="#tabs">Tabs</a>.</p>
+
+<h3>Will I be charged when the trial ends?</h3>
+<p>No. The 7-day trial is a separate free item, so nothing is charged and nothing renews. If you don't buy Pro, Pro tabs and extra tabs turn read-only, Clips holds 5, and nothing is deleted. Details are under <a href="#pro">The trial and SideScoop Pro</a>.</p>
+
+<h3>I bought Pro. How do I get it on another Mac, or after reinstalling?</h3>
+<p>Sign in to the App Store with the same Apple Account, then choose <strong>Restore Purchases</strong> in the SideScoop menu bar menu, the palette menu or the Pro screen. You don't pay again.</p>
+
+<h3>I have a code for SideScoop Pro.</h3>
+<p>Choose <strong>Redeem Code…</strong> in the menu bar menu, the palette menu or the Pro screen, and type it into Apple's sheet. It needs macOS 15 or later. You can also redeem it in the App Store app.</p>
+
+<h3>Do I pay again for new panels?</h3>
+<p>No. Panels added in later updates are part of SideScoop Pro.</p>
+
+<h3>Where are my notes?</h3>
+<p>In your notes folder. Click the SideScoop menu bar icon and choose <strong>Notes Folder</strong> (the item shows the folder's name) to open it in Finder. See <a href="#files">Where your notes are kept</a>.</p>
+
+<h3>Can I open my notes in another app?</h3>
+<p>Yes. Notes, lists and tables are plain Markdown files, so any Markdown or text editor can open them. See <a href="#editor">Using another Markdown editor</a>.</p>
+
+<h3>Can I paste a table from a spreadsheet?</h3>
+<p>Yes. Cells you copy from a spreadsheet, a document or a web page and paste into a note become a table in that note. To edit tables and merge cells, use a Tables tab (Pro).</p>
+
+<h3>Can SideScoop remind me of a to-do?</h3>
+<p>Yes, for tomorrow. Point at a to-do and click the sun next to it. The next day at 9:00 AM, the panel slides out on To-dos with a <strong>Today</strong> list of what you flagged. To pick another time, choose <strong>Reminder Time…</strong> in the menu bar menu or the palette menu. If your Mac is asleep or SideScoop isn't running then, the list appears the next time it can. There are no other dates or times, and no notifications.</p>
+
+<h3>The shortcut does nothing.</h3>
+<p>Another app may already use it. Pick a different one under <strong>Shortcut</strong> in the menu bar menu, or record your own. When you record one, SideScoop tells you if macOS won't accept it.</p>
+
+<h3>The panel doesn't open at the screen edge.</h3>
+<p>Check that <strong>Show at Right Screen Edge</strong> is ticked in the menu bar menu. The edge is the right side of your rightmost display, away from the corners, and you need to hold the pointer there for a moment. While a mouse button is down, it opens only if you're dragging something.</p>
+
+<h3>Does Clips keep my passwords?</h3>
+<p>It skips anything the app you copied from marks as concealed or temporary, which is how password managers mark copied passwords. Not every app does that, so if you copy a password from somewhere else, delete it from the tab. The history stays on this Mac and never goes to iCloud or anywhere else.</p>
+
+<h3>macOS asked whether SideScoop may paste from other apps.</h3>
+<p>Clips needs this, and macOS may ask after you turn Clips on. Choose Allow. To change your answer, or to stop macOS asking, go to System Settings › Privacy &amp; Security › Paste from Other Apps. If pasting is turned off there, the Clips tab says so and stops recording.</p>
+
+<h3>I deleted something by mistake.</h3>
+<p>Press <kbd>⌘</kbd> <kbd>Z</kbd> straight away. Deleted notes, tabs and pictures also go to the Trash, so you can put them back from there. Clips you delete or clear are gone for good.</p>
+
+<h3>Does SideScoop work offline?</h3>
+<p>Yes. Buying Pro, starting the trial, restoring and redeeming a code need the App Store, and a picture that a note shows from a web address needs a connection. Everything else works offline.</p>
+
+<h3>Which languages does it support?</h3>
+<p>English only, for now.</p>
+
+<h3>How do I get a refund?</h3>
+<p>Apple handles purchases. Ask for a refund at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+
+<h3>How do I remove SideScoop?</h3>
+<p>If your notes are in SideScoop's own folder, copy them somewhere first (menu bar menu › <strong>Notes Folder</strong>). Then choose <strong>Quit SideScoop</strong> in the menu bar menu and drag SideScoop from Applications to the Trash. A notes folder you chose yourself stays where it is.</p>
+
+<h2 id="open">Opening and closing the panel</h2>
+<ul>
+  <li><strong>Shortcut:</strong> <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>E</kbd>, Command, Shift and E.</li>
+  <li><strong>Screen edge:</strong> push the pointer against the right edge of the screen and hold it there for a moment. If you're dragging text or a picture, the panel opens so you can drop it in.</li>
+  <li><strong>Menu bar:</strong> click the SideScoop icon and choose <strong>Show Panel</strong>.</li>
+</ul>
+<p>To close it, click outside it, press <kbd>Esc</kbd>, or press the shortcut again. The pin at the top keeps it open while you work in another app. Drag the panel's left edge to change its width.</p>
+<p>In the menu bar menu you can pick another <strong>Shortcut</strong> (or <strong>Custom…</strong> to record your own), untick <strong>Show at Right Screen Edge</strong>, and tick <strong>Open at Login</strong>, which is off until you turn it on. <strong>Settings…</strong> (<kbd>⌘</kbd> <kbd>,</kbd>) opens the palette menu, the button at the bottom of the tab rail, with the themes, the shortcut, Reminder Time… and Alarm Sound.</p>
+
+<h2 id="tabs">Tabs</h2>
+<p>Tabs run down the left side of the panel. Click <strong>+</strong> under them for a new one; Pro panels are marked Pro there. Double-click a tab to rename it. Right-click it, or click <strong>⋯</strong> at the top of the panel, for its color, Rename…, Show in Finder, Move Up, Move Down, Delete Tab and a few more.</p>
+<h3>Free</h3>
+<ul>
+  <li><strong>Notes</strong>: Markdown notes with groups, colors and search. Paste or drop screenshots in, or cells from a spreadsheet to make a table.</li>
+  <li><strong>Stickies</strong>: a wall of sticky notes.</li>
+  <li><strong>To-dos</strong>: checklists with sub-items and details. The sun on an item brings it back tomorrow morning.</li>
+  <li><strong>Clips</strong>: the last 5 things you copied, once you turn it on.</li>
+  <li><strong>Logs</strong>: timestamped lines, one file a day, plus what you finished and how long you focused that day.</li>
+  <li>The focus timer, floating windows for notes, the shortcut and the screen edge.</li>
+  <li>Two themes: Sketchbook and Native.</li>
+</ul>
+<p>Free tabs are one of each kind.</p>
+<h3>SideScoop Pro <span class="tag">IN-APP PURCHASE</span></h3>
+<ul>
+  <li><strong>Tables</strong>: small tables with merged cells, copied as real tables.</li>
+  <li><strong>Snippets</strong>: text and pictures you want to paste again.</li>
+  <li><strong>Clips</strong> keeps any number up to 500, and <strong>Keep</strong> moves a clip into Snippets.</li>
+  <li><strong>Commits</strong>: tap a card each time you do something, and see counts and streaks.</li>
+  <li><strong>Maps</strong>: ideas on an endless canvas, joined by lines.</li>
+  <li><strong>Doodles</strong>: draw, write and drop pictures on a page.</li>
+  <li><strong>Trips</strong>: plan a trip day by day.</li>
+  <li>More than one tab of a kind, such as a second Notes tab.</li>
+  <li>Two more themes: Pixel and Neon.</li>
+</ul>
+<p>Pro tabs and extra tabs carry a small Pro mark in the tab rail until you buy Pro.</p>
+
+<h2 id="clips">Clips</h2>
+<p>Clips is off until you click <strong>Turn On</strong> in the Clips tab. From the next thing you copy, it keeps the last 5 things you copied on this Mac: text, links and pictures. Click one to copy it again, or × to delete it. With Pro, double-click the number in the top-right corner of the tab and type how many to keep, from 1 to 500.</p>
+<p>While it records, a dot shows on the menu bar icon and on the tab. <strong>Pause</strong> and <strong>Resume</strong> are in the tab, and <strong>Pause Clips</strong> and <strong>Clear Clips…</strong> in the menu bar menu. Deleting the Clips tab deletes the history and turns Clips off.</p>
+<p>If the trial ends without a purchase, nothing in Clips is deleted. It records again once 5 or fewer are left.</p>
+
+<h2 id="snippets">Snippets <span class="tag">PRO</span></h2>
+<p>Type or paste into the box at the top, drop text or pictures in, or click <strong>Keep</strong> on a clip. Click a snippet to copy it, double-click its text to edit it, and click × to delete it. A long one shows a few lines until you point at it.</p>
+
+<h2 id="tables">Tables <span class="tag">PRO</span></h2>
+<p>Type a title in the box at the top and press <kbd>Return</kbd> for a new table, or paste cells there. Click a cell and type; <kbd>Tab</kbd> moves right and <kbd>Return</kbd> moves down. Typing into the faint row or column at the edge adds one.</p>
+<p>To merge cells, drag across them (or Shift-click) and click <strong>Merge</strong>, or press <kbd>⌘</kbd> <kbd>M</kbd>. Click a merged cell for <strong>Unmerge</strong>. The handles beside rows and columns delete or move them.</p>
+<p><strong>Copy</strong> on the card puts the table on the clipboard, so it pastes as a table into a word processor or spreadsheet. <strong>Copy as Markdown</strong> is in the card's menu.</p>
+
+<h2 id="focus">The focus timer</h2>
+<p>Click the clock at the bottom of the tab rail and 25 minutes start. The menu bar shows the time left, so you can close the panel. Click the clock again to stop early.</p>
+<p>To change the length, double-click the number under the clock, type a number of minutes from 1 to 180, and press <kbd>Return</kbd>. The next click on the clock starts that many minutes.</p>
+<p>When time's up, the panel slides in with a soft sound and a <strong>Time's up</strong> banner. Choose <strong>Again</strong> for another round or <strong>Done</strong>. Logs keeps the day's total. To turn the sound off, untick <strong>Alarm Sound</strong> in the palette menu.</p>
+
+<h2 id="files">Where your notes are kept</h2>
+<p>Everything is a plain file in your notes folder. Until you choose another, SideScoop keeps it in its own space on your Mac: <code>~/Library/Containers/com.sidescoop.app/Data/SideScoop</code>. To use a different folder, choose <strong>Change Notes Folder…</strong> in the menu bar menu.</p>
+<p>Each tab is a folder inside it:</p>
+<table>
+  <tr><th>Tab</th><th>Saved as</th></tr>
+  <tr><td>Notes</td><td>one <code>.md</code> file per note; a group is a folder</td></tr>
+  <tr><td>Stickies</td><td><code>ideas.md</code></td></tr>
+  <tr><td>To-dos</td><td><code>todo.md</code></td></tr>
+  <tr><td>Logs</td><td>one file a day, such as <code>2026-11-10.md</code></td></tr>
+  <tr><td>Snippets</td><td><code>snippets.md</code> and the picture files</td></tr>
+  <tr><td>Tables</td><td>one <code>.md</code> file per table</td></tr>
+  <tr><td>Commits</td><td><code>checkin.md</code></td></tr>
+  <tr><td>Maps</td><td><code>mindmap.canvas</code> (JSON Canvas)</td></tr>
+  <tr><td>Doodles</td><td><code>paint.png</code></td></tr>
+  <tr><td>Trips</td><td><code>trip.md</code></td></tr>
+</table>
+<p>Screenshots pasted into notes go in an <code>assets</code> folder. Tab order and colors are in a hidden file, <code>.edgenotes.json</code>. The Clips history isn't in the notes folder.</p>
+
+<h2 id="icloud">Using a folder in iCloud Drive</h2>
+<p>A notes folder in iCloud Drive is backed up and can be used from your other Macs.</p>
+<ol>
+  <li>Turn on iCloud Drive: System Settings › your name › iCloud › iCloud Drive.</li>
+  <li>Click the SideScoop menu bar icon and choose <strong>Move to iCloud Drive…</strong>.</li>
+  <li>Pick or create a folder there. SideScoop copies your notes into it and uses it from then on.</li>
+</ol>
+<p>On another Mac, choose <strong>Change Notes Folder…</strong> and pick the same folder. A note iCloud hasn't downloaded yet shows up once it arrives.</p>
+
+<h2 id="editor">Using another Markdown editor</h2>
+<p>SideScoop's files are ordinary Markdown, so you can open the same folder in any Markdown editor, or point SideScoop at a folder inside your existing notes. Choose <strong>Change Notes Folder…</strong> and pick a folder of its own rather than the top of your notes, because every folder directly inside the notes folder becomes a tab.</p>
+<ul>
+  <li>Logs are named by date (<code>YYYY-MM-DD.md</code>), the usual daily-note format.</li>
+  <li>Mind maps are <code>.canvas</code> files in the open JSON Canvas format.</li>
+  <li>A table is a Markdown table, or an HTML table once cells are merged, since Markdown can't merge cells.</li>
+  <li>SideScoop shows pictures written as ordinary Markdown images and as <code>![[name.png]]</code>.</li>
+</ul>
+<p>SideScoop reads the files again each time the panel opens, so changes made elsewhere show up.</p>
+
+<h2 id="pro">The trial and SideScoop Pro</h2>
+<p>Click <strong>+</strong> and pick a panel marked Pro, or choose <strong>SideScoop Pro…</strong> in the menu bar menu, to see the Pro screen with Pro's price.</p>
+<ul>
+  <li><strong>Try Free for 7 Days</strong> starts the trial. Nothing is charged when it ends: Apple's purchase sheet lists “7-day Trial” at no cost.</li>
+  <li>It lasts 7 days from when you start it. Reinstalling doesn't restart it, and it can't be started twice.</li>
+  <li>Then Pro tabs and extra tabs turn read-only: you can still open, copy, export and delete what's in them, but you can't add to them or make new ones. Clips holds 5, and Pro themes go back to Sketchbook. Nothing is deleted.</li>
+  <li><strong>Buy Pro</strong> is a one-time purchase that unlocks everything again for good. There's no subscription.</li>
+</ul>
+
+<h2 id="keys">Keyboard shortcuts</h2>
+<table>
+  <tr><th>Keys</th><th>What they do</th></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>E</kbd></td><td>Show or hide the panel (you can change it)</td></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Close what's open, then hide the panel</td></tr>
+  <tr><td><kbd>Return</kbd></td><td>Add what you typed in the box at the top</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>,</kbd></td><td>Open the palette menu (Settings…)</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>1</kbd> to <kbd>9</kbd></td><td>Go to the first to ninth tab</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>N</kbd></td><td>New note (in Notes) or sticky (in Stickies)</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>N</kbd></td><td>New group (in Notes)</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>F</kbd></td><td>Search (Notes, Stickies, To-dos, Tables)</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>Z</kbd></td><td>Undo</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>B</kbd> / <kbd>I</kbd></td><td>Bold / italic while writing</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>L</kbd></td><td>Turn a line into a checkbox</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>M</kbd></td><td>In Tables: merge the picked cells, or unmerge</td></tr>
+  <tr><td><kbd>⌘</kbd> <kbd>W</kbd></td><td>Put a floating window back into the panel</td></tr>
+  <tr><td><kbd>B</kbd> <kbd>L</kbd> <kbd>R</kbd> <kbd>O</kbd> <kbd>T</kbd> <kbd>F</kbd> <kbd>E</kbd></td><td>In Doodles: pen, line, rectangle, ellipse, text, fill, eraser</td></tr>
+</table>
+
+<h2 id="contact">Contact</h2>
+<div class="contact">
+<p>Email <a href="mailto:rabbitoken22@gmail.com">rabbitoken22@gmail.com</a> with questions, problems or ideas.</p>
+<p>Privacy: see the <a href="privacy-policy.html">SideScoop Privacy Policy</a>.</p>
+</div>
+
+<footer>SideScoop for Mac · Support</footer>
+</main>
+</body>
+</html>
