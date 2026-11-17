@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>SideDrawer Support</title>
+<style>
+  :root {
+    --bg: #fbfaf7; --fg: #24221f; --muted: #6b665e; --line: #e4e0d8; --accent: #2f6f9f; --box: #f1eee7; --key: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1c1b19; --fg: #ecebe7; --muted: #a9a49b; --line: #3a3833; --accent: #8cc0e6; --box: #26251f; --key: #2e2c27; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.25rem; margin: 2.4em 0 0.5em; padding-top: 0.2em; }
+  h3 { font-size: 1.02rem; margin: 1.6em 0 0.3em; }
+  p, ul, ol { margin: 0 0 1em; }
+  ul, ol { padding-left: 1.3em; }
+  li { margin: 0.3em 0; }
+  a { color: var(--accent); }
+  .lede { color: var(--muted); margin-bottom: 1.6em; }
+  .contact { background: var(--box); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+  .contact p:last-child { margin-bottom: 0; }
+  kbd {
+    font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap;
+    background: var(--key); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px;
+  }
+  code { font: 0.88em ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 1em; font-size: 0.95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; color: var(--muted); }
+  td:first-child { white-space: nowrap; padding-right: 14px; }
+  td { overflow-wrap: anywhere; }
+  .tag { font-size: 0.78em; font-weight: 600; letter-spacing: 0.03em; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; margin-left: 4px; white-space: nowrap; }
+  footer { margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+<h1>SideDrawer Support</h1>
+<p class="lede">SideDrawer is a file drawer for your Mac: it slides in from the screen edge when you need your files and slides away when you don’t.</p>
+<div class="contact">
+<p><strong>Need help?</strong> Email <a href="mailto:rabbitoken22@gmail.com">rabbitoken22@gmail.com</a>. Include your macOS version, the SideDrawer version (… menu › <strong>About SideDrawer</strong>) and what happened.</p>
+</div>
+<h2>Common questions</h2>
+<h3>I opened SideDrawer. Where is it?</h3>
+<p>Push the pointer against the left screen edge, or press <kbd>⌥</kbd> <kbd>Tab</kbd>. To use the right edge or a Dock icon, choose … menu › <strong>Position</strong>.</p>
+<h3>Why does it ask for my home folder?</h3>
+<p>Mac App Store apps only see the folders you allow. Allow your home folder once and SideDrawer can show everything in it. Other disks ask the first time you open them.</p>
+<h3>How do I keep the drawer open?</h3>
+<p>Click the pin at the bottom of the sidebar.</p>
+<h3>What’s free, and what does Pro add?</h3>
+<p>Pro adds the PDF tools (create, merge, compress to a size, extract or remove pages, image-only PDF), picture markup and picture tools (convert, resize, compress), printing from the right-click menu, Markdown editing and more themes. Everything else is free for good. Pro features show a small crown until you have Pro.</p>
+<h3>Will I be charged when the trial ends?</h3>
+<p>No. The 14-day trial is free and doesn’t renew. When it ends, Pro features lock until you unlock Pro; nothing you made is deleted.</p>
+<h3>I bought Pro. How do I get it on another Mac?</h3>
+<p>Sign in with the same Apple Account and click <strong>Restore Purchases</strong> on the Pro screen (… menu › <strong>SideDrawer Pro…</strong>).</p>
+<h3>Which files can Create PDF make?</h3>
+<p>Pictures, Markdown, HTML, plain text, RTF, Word and OpenDocument text. Merge into PDF also takes PDFs, in the order they’re listed. PowerPoint, Keynote, Excel and Pages files aren’t supported.</p>
+<h3>I deleted or changed something by mistake.</h3>
+<p>Press <kbd>⌘</kbd> <kbd>Z</kbd> in the drawer, once per step. Items in the Trash can also be put back from the Trash.</p>
+<h3>The shortcut does nothing.</h3>
+<p>Another app may already use it. Pick a different one under … menu › <strong>Shortcut</strong>.</p>
+<footer>SideDrawer · Support</footer>
+</main>
+</body>
+</html>
