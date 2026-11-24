@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#23264a">
+<title>Diary Hop</title>
+<meta property="og:title" content="You're invited to write in a diary">
+<meta property="og:description" content="Diary Hop: a shared journal that travels between friends">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sidescoop-app.github.io/diaryhop/invite.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:#23264a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;-webkit-text-size-adjust:100%;overflow-x:hidden}
+svg.sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+main{position:relative;min-height:100%;max-width:430px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;text-align:center}
+.room{flex:1}
+.bubble{position:relative;width:264px;height:264px;border-radius:50%;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.26);display:flex;align-items:center;justify-content:center;animation:bob 6s ease-in-out infinite}
+.bubble:after{content:"";position:absolute;left:30px;top:40px;width:58px;height:30px;border-top:5px solid rgba(255,255,255,.65);border-radius:50%;transform:rotate(-38deg)}
+@keyframes bob{50%{transform:translateY(-9px)}}
+@media (prefers-reduced-motion:reduce){.bubble{animation:none}}
+.book{position:relative;width:128px;height:171px;border-radius:7px;overflow:hidden;transform:rotate(-4deg)}
+.book .spine{position:absolute;left:0;top:0;bottom:0;width:11px;background:rgba(0,0,0,.1)}
+.book svg{position:absolute;inset:0;width:100%;height:100%}
+.book .label{position:absolute;left:25px;right:14px;top:34px;min-height:34px;padding:5px 6px;background:rgba(255,255,255,.92);border-radius:4px;color:#2b2621;font:600 13px/1.25 ui-serif,"New York",Georgia,serif;display:flex;align-items:center;justify-content:center;overflow:hidden;max-height:60px;overflow-wrap:anywhere}
+h1{font:600 26px/1.3 ui-serif,"New York",Georgia,"Songti TC",serif;margin-top:30px;overflow-wrap:anywhere}
+p{font-size:16px;line-height:1.45;color:rgba(255,255,255,.74);margin-top:12px}
+button,.open{font:inherit;-webkit-appearance:none;appearance:none;border:0;background:none;color:inherit;cursor:pointer}
+.go{width:100%;min-height:54px;border-radius:14px;background:#d9674e;color:#fff;font-size:17px;font-weight:600;margin-top:26px;padding:8px 16px}
+.go:active{opacity:.85}
+.open{margin-top:16px;min-height:44px;font-size:15px;color:rgba(255,255,255,.8);text-decoration:underline;text-underline-offset:3px}
+.said{min-height:22px;margin-top:10px;font-size:14px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<svg class="sky" aria-hidden="true"></svg>
+<main>
+  <div class="room"></div>
+  <div class="bubble"><div class="book"><svg viewBox="0 0 128 171" aria-hidden="true"></svg><div class="spine"></div><div class="label"></div></div></div>
+  <h1></h1>
+  <p id="note"></p>
+  <button class="go" type="button"></button>
+  <div class="said" role="status" aria-live="polite"></div>
+  <button class="open" type="button"></button>
+  <div class="room"></div>
+</main>
+<script>
+(function () {
+  "use strict";
+  var STORE = "https://apps.apple.com/app/id6838946592";
+  // Before the app is on the App Store: the TestFlight link goes here for testing.
+  var TESTFLIGHT = "";
+
+  var WORDS = {
+    en: { invited: "{f} invited you to write in “{t}”", someone: "You're invited to write in “{t}”", plain: "You're invited to write in a diary",
+          missing: "Diary Hop isn't on this iPhone yet.", get: "Get it on the App Store", have: "Already have it? Open Diary Hop",
+          copied: "Invitation copied", other: "Diary Hop is for iPhone. Open this link on your iPhone.", copy: "Copy the link",
+          broken: "This invitation link isn't complete." },
+    ja: { invited: "{f}さんから「{t}」への招待です", someone: "「{t}」への招待です", plain: "交換日記への招待です",
+          missing: "このiPhoneにはDiary Hopがまだありません。", get: "App Storeで入手", have: "インストール済みの方はDiary Hopを開く",
+          copied: "招待をコピーしました", other: "Diary HopはiPhone用のアプリです。iPhoneでこのリンクを開いてください。", copy: "リンクをコピー",
+          broken: "この招待リンクは途中で切れています。" },
+    ko: { invited: "{f}님이 “{t}”에 초대했어요", someone: "“{t}”에 초대받았어요", plain: "교환일기에 초대받았어요",
+          missing: "이 iPhone에는 아직 Diary Hop이 없어요.", get: "App Store에서 받기", have: "이미 설치했다면 Diary Hop 열기",
+          copied: "초대 링크를 복사했어요", other: "Diary Hop은 iPhone 앱이에요. iPhone에서 이 링크를 열어 주세요.", copy: "링크 복사",
+          broken: "초대 링크가 완전하지 않아요." },
+    "zh-Hant": { invited: "{f} 邀請你一起寫《{t}》", someone: "邀請你一起寫《{t}》", plain: "邀請你一起寫交換日記",
+          missing: "這部 iPhone 還沒有安裝 Diary Hop。", get: "前往 App Store 安裝", have: "已經裝好了？打開 Diary Hop",
+          copied: "已複製邀請", other: "Diary Hop 是 iPhone App，請用 iPhone 打開這個連結。", copy: "複製連結",
+          broken: "這個邀請連結不完整。" },
+    "zh-Hans": { invited: "{f} 邀请你一起写《{t}》", someone: "邀请你一起写《{t}》", plain: "邀请你一起写交换日记",
+          missing: "这部 iPhone 还没有安装 Diary Hop。", get: "前往 App Store 安装", have: "已经装好了？打开 Diary Hop",
+          copied: "已复制邀请", other: "Diary Hop 是 iPhone App，请用 iPhone 打开这个链接。", copy: "复制链接",
+          broken: "这个邀请链接不完整。" }
+  };
+
+  function language() {
+    var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (var i = 0; i < list.length; i++) {
+      var l = list[i].toLowerCase();
+      if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-Hant" : "zh-Hans";
+      var two = l.slice(0, 2);
+      if (WORDS[two]) return two;
+    }
+    return "en";
+  }
+
+  // Everything about the invitation sits behind the "#" and never leaves this phone:
+  // #token.title.name.cover.pattern, the words in base64.
+  function words(code) {
+    try {
+      code = (code || "").replace(/-/g, "+").replace(/_/g, "/");
+      if (!code) return "";
+      while (code.length % 4) code += "=";
+      return new TextDecoder().decode(Uint8Array.from(atob(code), function (c) { return c.charCodeAt(0); }));
+    } catch (e) { return ""; }
+  }
+
+  function invitation() {
+    var p = location.hash.slice(1).split(".");
+    if (!/^~?[A-Za-z0-9_-]{4,}$/.test(p[0])) return null;
+    return { t: words(p[1]), f: words(p[2]), c: p[3] === "" ? 0 : Number(p[3]), p: p[4] || "" };
+  }
+
+  var COVERS = ["#e07a5f", "#ebc173", "#86b49c", "#8db7d8", "#b4a0d8", "#c9a174", "#3f4a7a", "#efa7b5"];
+
+  function pattern(svg, name, dark) {
+    var ink = dark ? "rgba(255,255,255,.22)" : "rgba(255,255,255,.38)", s = "", x, y, i;
+    if (name === "dots") for (y = 9, i = 0; y < 171; y += 15, i++) for (x = i % 2 ? 18 : 9; x < 128; x += 18) s += '<circle cx="' + x + '" cy="' + y + '" r="2.3" fill="' + ink + '"/>';
+    if (name === "stripes") for (x = -171; x < 128; x += 18) s += '<path d="M' + x + ' 171 L' + (x + 171) + ' 0" stroke="' + ink + '" stroke-width="5"/>';
+    if (name === "checks") { for (x = 0; x < 128; x += 18) s += '<rect x="' + x + '" width="8" height="171" fill="' + ink + '"/>'; for (y = 0; y < 171; y += 18) s += '<rect y="' + y + '" width="128" height="8" fill="' + ink + '"/>'; }
+    if (name === "stars") { var seed = 7; var r = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+      for (i = 0; i < 40; i++) s += star(r() * 128, r() * 171, 2 + r() * 2.4, ink); }
+    svg.innerHTML = s;
+  }
+
+  function star(cx, cy, rad, fill) {
+    var p = "";
+    for (var i = 0; i < 10; i++) { var a = i * Math.PI / 5 - Math.PI / 2, q = i % 2 ? rad * .45 : rad; p += (i ? "L" : "M") + (cx + Math.cos(a) * q).toFixed(1) + " " + (cy + Math.sin(a) * q).toFixed(1); }
+    return '<path d="' + p + 'Z" fill="' + fill + '"/>';
+  }
+
+  function sky() {
+    var w = innerWidth, h = innerHeight, seed = 21, s = "";
+    var r = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    for (var i = 0; i < w * h / 2600; i++) {
+      var x = r() * w, y = r() * h, d = .6 + r() * 1.1;
+      s += i % 9 ? '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + d.toFixed(1) + '" fill="rgba(255,255,255,' + (.35 + r() * .5).toFixed(2) + ')"/>' : star(x, y, d * 2.6, "rgba(255,231,163,.9)");
+    }
+    document.querySelector(".sky").innerHTML = s;
+  }
+
+  function copy(text) {
+    var old = function () {
+      var t = document.createElement("textarea");
+      t.value = text; t.style.position = "absolute"; t.style.left = "-999px"; t.style.fontSize = "16px";
+      document.body.appendChild(t); t.select(); t.setSelectionRange(0, text.length);
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(t); return ok;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return Promise.race([
+        navigator.clipboard.writeText(text).then(function () { return true; }, function () { return old(); }),
+        new Promise(function (done) { setTimeout(function () { done(old()); }, 800); })
+      ]);
+    }
+    return Promise.resolve(old());
+  }
+
+  function $(q) { return document.querySelector(q); }
+
+  function show() {
+    var lang = language(), w = WORDS[lang], inv = invitation();
+    document.documentElement.lang = lang;
+    var ua = navigator.userAgent;
+    var iphone = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var cover = inv && COVERS[inv.c] ? inv.c : 0;
+    $(".book").style.background = COVERS[cover];
+    pattern($(".book svg"), inv && inv.p, cover === 6);
+    $(".label").textContent = inv && inv.t ? String(inv.t).slice(0, 60) : "Diary Hop";
+    var line = !inv ? w.plain : inv.t && inv.f ? w.invited : inv.t ? w.someone : w.plain;
+    $("h1").textContent = line.replace(/\{f\}|\{t\}/g, function (k) { return String(k === "{f}" ? inv.f : inv.t).slice(0, 60); });
+    $("#note").textContent = !inv ? w.broken : iphone ? w.missing : w.other;
+    $(".go").textContent = iphone ? w.get : w.copy;
+    $(".open").textContent = w.have;
+    $(".open").hidden = !iphone || !inv;
+    $(".go").onclick = function () {
+      if (!inv && iphone) { location.href = TESTFLIGHT || STORE; return; }
+      copy(location.href).then(function (ok) {
+        if (ok) $(".said").textContent = w.copied;
+        if (iphone) location.href = TESTFLIGHT || STORE;
+      });
+    };
+    $(".open").onclick = function () { location.href = "diaryhop://i" + location.hash; };
+  }
+
+  sky(); show();
+  addEventListener("hashchange", show);
+  addEventListener("resize", sky);
+})();
+</script>
+</body>
+</html>

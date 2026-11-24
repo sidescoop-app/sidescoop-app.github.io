@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["R5C82FZWN4.com.sidescoop.diaryhop"],
+        "components": [
+          { "/": "/diaryhop/i/*" },
+          { "/": "/diaryhop/i" }
+        ]
+      }
+    ]
+  }
+}
