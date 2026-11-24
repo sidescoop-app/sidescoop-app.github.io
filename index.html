@@ -27,6 +27,9 @@
   li { margin: 0.3em 0; }
   a { color: var(--accent); }
   .lede { color: var(--muted); margin-bottom: 1.6em; }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 1.8em; }
+  .stores a { display: block; border-radius: 9px; }
+  .stores img { display: block; height: 44px; width: auto; }
   .contact { background: var(--box); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
   .contact p:last-child { margin-bottom: 0; }
   kbd {
@@ -47,6 +50,11 @@
 <main>
 <h1>SideScoop Support</h1>
 <p class="lede">SideScoop is a sidebar of notes, lists and small tools that slides in from the right edge of your Mac’s screen. On iPhone, the same tabs fill the screen: see <a href="#iphone">SideScoop for iPhone</a>.</p>
+
+<div class="stores">
+<a href="https://apps.apple.com/app/id6833295009?platform=mac"><picture><source srcset="badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="172" height="44"></picture></a>
+<a href="https://apps.apple.com/app/id6833295009?platform=iphone"><picture><source srcset="badges/app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="badges/app-store-black.svg" alt="Download on the App Store" width="132" height="44"></picture></a>
+</div>
 
 <div class="contact">
 <p><strong>Need help?</strong> Email <a href="mailto:rabbitoken22@gmail.com">rabbitoken22@gmail.com</a>. Include your macOS or iOS version, the SideScoop version (on the Mac: menu bar icon › <strong>About SideScoop</strong>; on iPhone: Settings › General › iPhone Storage › SideScoop) and what happened.</p>
