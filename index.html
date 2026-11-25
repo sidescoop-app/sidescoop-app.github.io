@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>SideScoop Support</title>
+<link rel="icon" href="img/icon.png">
+<meta name="description" content="SideScoop for Mac and iPhone: notes, doodles, plans and more. Support and common questions.">
 <style>
   :root {
-    --bg: #fbfaf7; --fg: #24221f; --muted: #6b665e; --line: #e4e0d8; --accent: #2f6f9f; --box: #f1eee7; --key: #ffffff;
+    --bg: #fbfaf7; --fg: #24221f; --muted: #6b665e; --line: #e4e0d8; --accent: #2f6f9f; --box: #f1eee7; --key: #ffffff; --hero: #f6ecdd; --dots: #e6d8c2; --bezel: #2b2621; --base: #d3cabb;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #1c1b19; --fg: #ecebe7; --muted: #a9a49b; --line: #3a3833; --accent: #8cc0e6; --box: #26251f; --key: #2e2c27; }
+    :root { --bg: #1c1b19; --fg: #ecebe7; --muted: #a9a49b; --line: #3a3833; --accent: #8cc0e6; --box: #26251f; --key: #2e2c27; --hero: #2b2721; --dots: #3a342b; --bezel: #575046; --base: #8d8475; }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -18,8 +20,39 @@
     margin: 0; background: var(--bg); color: var(--fg);
     font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
-  main { max-width: 40rem; margin: 0 auto; padding: 40px 16px 64px; }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .hero { background: #e9f1fb; color: #1d2430; overflow: hidden; }
+  .hero-in { max-width: 70rem; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(20rem, 5fr) 7fr; align-items: end; gap: 20px; }
+  .hero-text { padding: 56px 0; align-self: center; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; padding: 9px 18px 9px 10px; background: #fff; border: 2px dashed #a9c3e6; border-radius: 18px; margin-bottom: 22px; }
+  .brand img { width: 52px; height: 52px; border-radius: 12px; display: block; }
+  .brand b { display: block; font-size: 1.5rem; line-height: 1.1; color: #2c6fd1; letter-spacing: -0.01em; }
+  .brand span { font-size: 0.95rem; font-weight: 600; color: #5b7fae; line-height: 1.3; }
+  .hero h1 { font-size: 3.1rem; line-height: 1.06; margin: 0 0 12px; letter-spacing: -0.025em; text-wrap: balance; }
+  .hero h1 em { font-style: normal; color: #2c6fd1; }
+  .hero .tag-line { font-size: 1.05rem; line-height: 1.45; color: #4d5868; margin: 0 0 22px; text-wrap: balance; }
+  .art { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(to right, transparent, #000 90px); mask-image: linear-gradient(to right, transparent, #000 90px); }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 900px) {
+    .hero-in { display: block; padding: 0; max-width: none; }
+    .hero-text { padding: 26px 20px 6px; text-align: center; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero .tag-line { font-size: 1rem; margin-bottom: 18px; }
+    .stores { justify-content: center; }
+    .stores a:last-child { order: -1; }
+    .art { max-width: 640px; margin: 12px auto 0; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18px); mask-image: linear-gradient(to bottom, transparent, #000 18px); }
+    main { padding-top: 24px; }
+  }
+  .stores img { display: block; height: 44px; width: auto; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 2em; padding: 0; list-style: none; }
+  .jump li { margin: 0; }
+  .jump a { display: block; padding: 5px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--key); color: var(--fg); text-decoration: none; font-size: 0.92rem; }
+  main { max-width: 42rem; margin: 0 auto; padding: 32px 16px 64px; }
+  details { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; padding: 13px 30px 13px 0; font-weight: 600; font-size: 1.02rem; line-height: 1.4; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 4px; top: 9px; font-size: 1.35rem; font-weight: 400; color: var(--muted); }
+  details[open] summary::after { content: "–"; }
+  details > p:first-of-type { margin-top: 0; }
   h2 { font-size: 1.25rem; margin: 2.4em 0 0.5em; padding-top: 0.2em; }
   h3 { font-size: 1.02rem; margin: 1.6em 0 0.3em; }
   p, ul, ol { margin: 0 0 1em; }
@@ -27,7 +60,6 @@
   li { margin: 0.3em 0; }
   a { color: var(--accent); }
   .lede { color: var(--muted); margin-bottom: 1.6em; }
-  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 1.8em; }
   .stores a { display: block; border-radius: 9px; }
   .stores img { display: block; height: 44px; width: auto; }
   .contact { background: var(--box); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
@@ -47,14 +79,30 @@
 </style>
 </head>
 <body>
-<main>
-<h1>SideScoop Support</h1>
-<p class="lede">SideScoop is a sidebar of notes, lists and small tools that slides in from the right edge of your Mac’s screen. On iPhone, the same tabs fill the screen: see <a href="#iphone">SideScoop for iPhone</a>.</p>
-
+<header class="hero">
+<div class="hero-in">
+<div class="hero-text">
+<div class="brand"><img src="img/icon.png" alt="" width="52" height="52"><div style="text-align:left"><b>SideScoop</b><span>For Mac and iPhone</span></div></div>
+<h1>Catch every <em>spark</em></h1>
+<p class="tag-line">On your Mac and iPhone, synced in your own iCloud Drive. No data collected.</p>
 <div class="stores">
-<a href="https://apps.apple.com/app/id6833295009?platform=mac"><picture><source srcset="badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="172" height="44"></picture></a>
-<a href="https://apps.apple.com/app/id6833295009?platform=iphone"><picture><source srcset="badges/app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="badges/app-store-black.svg" alt="Download on the App Store" width="132" height="44"></picture></a>
+<a href="https://apps.apple.com/app/id6833295009?platform=mac"><img src="badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="172" height="44"></a>
+<a href="https://apps.apple.com/app/id6833295009?platform=iphone"><img src="badges/app-store-black.svg" alt="Download on the App Store" width="132" height="44"></a>
 </div>
+</div>
+<img class="art" src="img/mac-iphone.webp" alt="The same note on a Mac and an iPhone, with a sync arrow between them" width="1560" height="1108">
+</div>
+</header>
+<main>
+<p class="lede">SideScoop is a sidebar of notes, lists and small tools that slides in from the right edge of your Mac’s screen. On iPhone, the same tabs fill the screen: see <a href="#iphone">SideScoop for iPhone</a>.</p>
+<ul class="jump">
+<li><a href="#faq">Common questions</a></li>
+<li><a href="#tabs">Tabs</a></li>
+<li><a href="#pro">Trial and Pro</a></li>
+<li><a href="#files">Your notes</a></li>
+<li><a href="#keys">Shortcuts</a></li>
+<li><a href="#iphone">iPhone</a></li>
+</ul>
 
 <div class="contact">
 <p><strong>Need help?</strong> Email <a href="mailto:rabbitoken22@gmail.com">rabbitoken22@gmail.com</a>. Include your macOS or iOS version, the SideScoop version (on the Mac: menu bar icon › <strong>About SideScoop</strong>; on iPhone: Settings › General › iPhone Storage › SideScoop) and what happened.</p>
@@ -62,69 +110,111 @@
 
 <h2 id="faq">Common questions</h2>
 
-<h3>Is there an iPhone version?</h3>
+<details>
+<summary>Is there an iPhone version?</summary>
 <p>Yes. SideScoop for iPhone has Day, Notes, Stickies, To-dos and Logs, and the Pro panels, full screen with the tabs along the bottom. Pro and the trial work on both with the same Apple Account. See <a href="#iphone">SideScoop for iPhone</a>.</p>
+</details>
 
-<h3>I installed SideScoop. Where is it?</h3>
+<details>
+<summary>I installed SideScoop. Where is it?</summary>
 <p>In the menu bar, near the clock: a small window shape with a strip down its right side. It has no Dock icon. Click it and choose <strong>Show Panel</strong>, or press <kbd>⇧</kbd> <kbd>⌘</kbd> <kbd>E</kbd>. Opening SideScoop again from Applications also shows the panel, which helps if the icon is hidden behind the camera notch.</p>
+</details>
 
-<h3>What’s free, and what does Pro add?</h3>
+<details>
+<summary>What’s free, and what does Pro add?</summary>
 <p>Day (today, with up to 3 bells a day), Notes, Stickies, To-dos, Clips (the last 5 things you copied), Logs, the focus timer, to-do reminders and two themes are free for good. SideScoop Pro adds Day’s other days, repeats and more bells, Tables, Snippets, a longer Clips history, Commits, Maps, Doodles, Trips, extra tabs of a kind and three more themes. The full list is under <a href="#tabs">Tabs</a>.</p>
+</details>
 
-<h3>Will I be charged when the trial ends?</h3>
+<details>
+<summary>Will I be charged when the trial ends?</summary>
 <p>No. The 14-day trial is a separate free item, so nothing is charged and nothing renews. If you don’t buy Pro, Pro tabs turn read-only, so do Day’s other days, Clips holds 5, and nothing is deleted. Day, Notes, Stickies, To-dos, Clips and Logs keep working in every tab, extra ones included. Details are under <a href="#pro">The trial and SideScoop Pro</a>.</p>
+</details>
 
-<h3>I bought Pro. How do I get it on another Mac, my iPhone, or after reinstalling?</h3>
+<details>
+<summary>I bought Pro. How do I get it on another Mac, my iPhone, or after reinstalling?</summary>
 <p>Sign in to the App Store with the same Apple Account, then choose <strong>Restore Purchases</strong> on the Pro screen (on the Mac: palette menu › SideScoop Pro…, or the SideScoop menu bar menu; on iPhone: the gear button › SideScoop Pro…). You don’t pay again.</p>
+</details>
 
-<h3>I have a code for SideScoop Pro.</h3>
+<details>
+<summary>I have a code for SideScoop Pro.</summary>
 <p>Choose <strong>Redeem Code…</strong> on the Pro screen (or, on the Mac, in the menu bar menu), and type it into Apple’s sheet. On the Mac it needs macOS 15 or later. You can also redeem it in the App Store app.</p>
+</details>
 
-<h3>Do I pay again for new panels?</h3>
+<details>
+<summary>Do I pay again for new panels?</summary>
 <p>No. Panels added in later updates are part of SideScoop Pro.</p>
+</details>
 
-<h3>Where are my notes?</h3>
+<details>
+<summary>Where are my notes?</summary>
 <p>In your notes folder. Click the palette button at the bottom of the tab rail (or the SideScoop menu bar icon) and choose the folder’s name under <strong>Folder</strong> to open it in Finder. See <a href="#files">Where your notes are kept</a>.</p>
+</details>
 
-<h3>Can I open my notes in another app?</h3>
+<details>
+<summary>Can I open my notes in another app?</summary>
 <p>Yes. Notes, lists and tables are plain Markdown files, so any Markdown or text editor can open them. See <a href="#editor">Using another Markdown editor</a>.</p>
+</details>
 
-<h3>Can I paste a table from a spreadsheet?</h3>
+<details>
+<summary>Can I paste a table from a spreadsheet?</summary>
 <p>Yes. Cells you copy from a spreadsheet, a document or a web page and paste into a note become a table in that note. To edit tables and merge cells, use a Tables tab (Pro).</p>
+</details>
 
-<h3>Can SideScoop remind me at a certain time?</h3>
+<details>
+<summary>Can SideScoop remind me at a certain time?</summary>
 <p>Yes, in Day. Type something with its time in the box at the top and end it with <strong>/r</strong>, such as “Call Mom at 3pm /r”, then press <kbd>Return</kbd>. At 3 PM the panel slides out with a soft sound and a banner. See <a href="#day">Day</a>.</p>
+</details>
 
-<h3>Can SideScoop remind me of a to-do?</h3>
+<details>
+<summary>Can SideScoop remind me of a to-do?</summary>
 <p>Yes, for tomorrow. Point at a to-do and click the sun next to it. The next day at 9:00 AM, the panel slides out on To-dos with a <strong>Today</strong> list of what you flagged. To pick another time, choose <strong>Reminder Time…</strong> in the menu bar menu or the palette menu. If your Mac is asleep or SideScoop isn’t running then, the list appears the next time it can. There are no other dates or times, and no notifications.</p>
+</details>
 
-<h3>The shortcut does nothing.</h3>
+<details>
+<summary>The shortcut does nothing.</summary>
 <p>Another app may already use it. Pick a different one under <strong>Shortcut</strong> in the menu bar menu, or record your own. When you record one, SideScoop tells you if macOS won’t accept it.</p>
+</details>
 
-<h3>The panel doesn’t open at the screen edge.</h3>
+<details>
+<summary>The panel doesn’t open at the screen edge.</summary>
 <p>Check that <strong>Show at Right Screen Edge</strong> is ticked in the menu bar menu. The edge is the right side of your rightmost display, away from the corners, and you need to hold the pointer there for a moment. While a mouse button is down, it opens only if you’re dragging something.</p>
+</details>
 
-<h3>Does Clips keep my passwords?</h3>
+<details>
+<summary>Does Clips keep my passwords?</summary>
 <p>It skips copies that password managers mark as private (an app marks a copy as concealed or temporary). Not every app marks them, so if you copy a password from somewhere else, delete it from the tab. The history stays on this Mac and never goes to iCloud or anywhere else.</p>
+</details>
 
-<h3>macOS asked whether SideScoop may paste from other apps.</h3>
+<details>
+<summary>macOS asked whether SideScoop may paste from other apps.</summary>
 <p>Clips needs this, and macOS may ask after you turn Clips on. Choose Allow. To change your answer, or to stop macOS asking, go to System Settings › Privacy &amp; Security › Paste from Other Apps. If pasting is turned off there, the Clips tab says so and stops recording.</p>
+</details>
 
-<h3>I deleted something by mistake.</h3>
+<details>
+<summary>I deleted something by mistake.</summary>
 <p>Press <kbd>⌘</kbd> <kbd>Z</kbd> straight away. Deleted notes, tabs and pictures also go to the Trash, so you can put them back from there. Clips you delete or clear are gone for good.</p>
 <p>On iPhone, tap <strong>Undo</strong> on the message that shows up, or tap twice on an empty spot in the tab. A note brought back this way returns to its place in the list.</p>
+</details>
 
-<h3>Does SideScoop work offline?</h3>
+<details>
+<summary>Does SideScoop work offline?</summary>
 <p>Yes. Buying Pro, starting the trial, restoring and redeeming a code need the App Store, and a picture that a note shows from a web address needs a connection. Everything else works offline.</p>
+</details>
 
-<h3>Which languages does it support?</h3>
+<details>
+<summary>Which languages does it support?</summary>
 <p>English only, for now.</p>
+</details>
 
-<h3>How do I get a refund?</h3>
+<details>
+<summary>How do I get a refund?</summary>
 <p>Apple handles purchases. Ask for a refund at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+</details>
 
-<h3>How do I remove SideScoop?</h3>
+<details>
+<summary>How do I remove SideScoop?</summary>
 <p>If your notes are in SideScoop’s own folder, copy them somewhere first (palette menu › <strong>Folder</strong> › the folder’s name opens it in Finder). Then choose <strong>Quit SideScoop</strong> in the menu bar menu and drag SideScoop from Applications to the Trash. A notes folder you chose yourself stays where it is.</p>
+</details>
 
 <h2 id="open">Opening and closing the panel</h2>
 <ul>
